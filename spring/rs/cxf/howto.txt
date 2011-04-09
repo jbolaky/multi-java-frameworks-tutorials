@@ -1,0 +1,2 @@
+1. launch server using jetty plugin : command mvn jetty:run
+2. uncomment @Ignore in client test class and run them

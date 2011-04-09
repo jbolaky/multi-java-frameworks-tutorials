@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:annotation-config />
+	<tx:annotation-driven />
+	<context:spring-configured />
+
+	<context:component-scan base-package="com.mytutorials.domain.bookstore.repository.impl" />
+
+	<!-- JPA EntityManagerFactory -->
+	<bean id="bookstore_entity_entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="bookstore_DataSource" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="database" value="${jpa.database}" />
+				<property name="showSql" value="${jpa.showSql}" />
+				<property name="generateDdl" value="true" />
+			</bean>
+		</property>
+		<property name="jpaPropertyMap">
+			<map>
+				<entry key="hibernate.dialect" value="${hibernate.dialect}" />
+			</map>
+		</property>
+		<property name="persistenceProvider"
+			ref="bookstore_entity_ConfigurableHibernatePersistence" />
+		<property name="persistenceXmlLocation" value="classpath:META-INF/bookstore-persistence.xml" />
+	</bean>
+
+	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+		p:entityManagerFactory-ref="bookstore_entity_entityManagerFactory" />
+
+	<!-- TO uncomment and comment above txManager if wants AOP to manage Transaction -->
+	<!-- bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager" 
+		p:entityManagerFactory-ref="bookstore_entity_entityManagerFactory" /> <tx:advice 
+		id="bookstore_entity_TxAdvice" transaction-manager="txManager"> <tx:attributes> 
+		<tx:method name="find*" read-only="true" /> <tx:method name="*" /> </tx:attributes> 
+		</tx:advice> <aop:config> <aop:pointcut id="newsbookServiceMethods" expression="execution(* 
+		com.mytutorials.domain.bookstore.repository.impl.*.*(..))" /> <aop:advisor 
+		advice-ref="newsbook_entity_TxAdvice" pointcut-ref="newsbookServiceMethods" 
+		/> </aop:config -->
+
+	<!-- Interceptors -->
+	<bean id="bookstore_entity_ChainedInterceptor"
+		class="com.mytutorials.domain.bookstore.hibernate.interceptor.impl.ChainedInterceptor">
+		<property name="interceptors">
+			<list>
+				<bean
+					class="com.mytutorials.domain.bookstore.hibernate.interceptor.impl.TimestampInterceptor" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="bookstore_entity_ConfigurableHibernatePersistence"
+		class="com.mytutorials.domain.bookstore.hibernate.interceptor.impl.ConfigurableHibernatePersistence">
+		<property name="interceptor" ref="bookstore_entity_ChainedInterceptor" />
+	</bean>
+
+</beans>

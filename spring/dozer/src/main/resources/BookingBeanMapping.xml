@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<mapping>
+		<class-a>com.mytutorial.spring.dozer.entity.structure.one.Booking
+		</class-a>
+		<class-b>com.mytutorial.spring.dozer.entity.structure.two.BookingVO
+		</class-b>
+
+		<field>
+			<a>bookingConfirm</a>
+			<b>confirm</b>
+		</field>
+
+		<field>
+			<a>firstname</a>
+			<b>buyerVO.firstname</b>
+		</field>
+
+		<field>
+			<a>lastname</a>
+			<b>buyerVO.lastname</b>
+		</field>
+
+		<field>
+			<a>telephoneNumber</a>
+			<b>buyerVO.telephoneNumber</b>
+		</field>
+
+		<field custom-converter="com.mytutorial.spring.dozer.converter.GenderConverter">
+			<a>gender</a>
+			<b>buyerVO.gender</b>
+		</field>
+
+		<field custom-converter="com.mytutorial.spring.dozer.converter.ItemListConverter">
+			<a>items</a>
+			<b>bookedItems</b>
+		</field>
+
+		<field custom-converter="com.mytutorial.spring.dozer.converter.StatusRecordsConverter">
+			<a>statusHistory</a>
+			<b>statusRecords</b>
+		</field>
+	</mapping>
+
+</mappings>

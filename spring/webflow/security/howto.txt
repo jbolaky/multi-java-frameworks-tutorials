@@ -1,0 +1,10 @@
+1. run with jetty server with command mvn jetty:run
+2. access login page with url http://localhost:8080/webflow/flows/login
+	
+	credentials to access flow :
+	username : user1
+	password:1111
+	
+	credential to test if access is denied for a certain type of user : 
+	username : user2
+	password:2222

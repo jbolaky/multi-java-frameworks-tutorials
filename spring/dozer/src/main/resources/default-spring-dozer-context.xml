@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="dozerMapper" class="org.dozer.spring.DozerBeanMapperFactoryBean">
+		<property name="mappingFiles" value="classpath*:/*Mapping.xml" />
+		<property name="customConverters">
+			<list>
+				<ref local="genderConverter" />
+				<ref local="itemListConverter" />
+				<ref local="statusRecordsConverter" />
+			</list>
+		</property>
+		<property name="eventListeners">
+			<list>
+				<ref local="writingBookingValueListener" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="genderConverter" class="com.mytutorial.spring.dozer.converter.GenderConverter">
+		<constructor-arg type="java.lang.Class" value="java.lang.String" />
+		<constructor-arg type="java.lang.Class" value="java.lang.String" />
+	</bean>
+
+	<bean id="itemListConverter" class="com.mytutorial.spring.dozer.converter.ItemListConverter">
+		<constructor-arg type="java.lang.Class" value="java.util.ArrayList" />
+		<constructor-arg type="java.lang.Class" value="java.util.ArrayList" />
+	</bean>
+
+	<bean id="statusRecordsConverter"
+		class="com.mytutorial.spring.dozer.converter.StatusRecordsConverter">
+		<constructor-arg type="java.lang.Class" value="java.util.List" />
+		<constructor-arg type="java.lang.Class"
+			value="[Lcom.mytutorial.spring.dozer.entity.structure.two.StatusRecord;" />
+	</bean>
+
+	<bean id="writingBookingValueListener"
+		class="com.mytutorial.spring.dozer.eventlistener.NullValueListener" />
+
+	<bean id="dozerBookingMapper" class="com.mytutorial.spring.dozer.mapper.DozerBookingMapper" />
+
+</beans>

@@ -1,0 +1,16 @@
+1. run with jetty server with command mvn jetty:run
+2. access flow with url http://localhost:8080/webflow/flows/bookSearch
+3. test data :
+
+	Keyword: Spring Framework
+	Author: Ray
+
+	
+	Keyword:Spring Web MVC
+	Author: Paul
+
+	
+	Keyword: Spring Web Flow
+	Author: Ray
+
+4. Inputing data that will return only 1 result will show the book details directly whereas if more that 1 result is returned, the booklist page is shown

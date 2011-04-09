@@ -1,0 +1,2 @@
+1. run with jetty server with command mvn jetty:run
+2. access flow with url http://localhost:8080/webflow/flows/welcome

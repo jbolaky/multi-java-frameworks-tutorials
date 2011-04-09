@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.mytutorials.spring</groupId>
+		<artifactId>spring.parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<groupId>com.mytutorials.spring.webflow</groupId>
+	<artifactId>spring.webflow.parent</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>spring.webflow.parent</name>
+	<url>http://maven.apache.org</url>
+
+	<modules>
+		<module>basic</module>
+		<module>expression.evaluation</module>
+		<module>action.states</module>
+		<module>decision.states</module>
+		<module>end.states</module>
+		<module>subflow</module>
+		<module>security</module>
+	</modules>
+
+</project>

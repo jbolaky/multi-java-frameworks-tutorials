@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<view-state id="bookCriteria">
+		<on-render>
+			<evaluate expression="bookCriteriaAction.setupForm" />
+		</on-render>
+		<transition on="search" to="bookList">
+			<evaluate expression="bookCriteriaAction.bindAndValidate" />
+			<evaluate expression="bookService.search(bookCriteria)"
+				result="flowScope.books" />
+		</transition>
+	</view-state>
+
+	<view-state id="bookList">
+		<transition on="select" to="bookDetails">
+			<evaluate expression="bookService.findByIsbn(requestParameters.isbn)"
+				result="flowScope.book" />
+		</transition>
+	</view-state>
+
+	<view-state id="bookDetails" />
+
+</flow>
+

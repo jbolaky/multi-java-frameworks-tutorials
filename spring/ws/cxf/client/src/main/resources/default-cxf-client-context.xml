@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- Aegis data binding -->
+	<bean id="aegisBean" class="org.apache.cxf.aegis.databinding.AegisDatabinding"
+		scope="prototype" />
+
+
+	<bean id="jaxwsAndAegisServiceFactory" class="org.apache.cxf.jaxws.support.JaxWsServiceFactoryBean"
+		scope="prototype">
+		<property name="dataBinding" ref="aegisBean" />
+		<property name="serviceConfigurations">
+			<list>
+				<bean class="org.apache.cxf.jaxws.support.JaxWsServiceConfiguration" />
+				<bean class="org.apache.cxf.aegis.databinding.AegisServiceConfiguration" />
+				<bean class="org.apache.cxf.service.factory.DefaultServiceConfiguration" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Client code for unit test (or for injecting in webapp as done in the 
+		article) -->
+
+	<!-- Factory to create the dynamic proxy for client -->
+	<bean id="contactUsFactory" class="org.apache.cxf.jaxws.JaxWsProxyFactoryBean">
+		<property name="serviceClass"
+			value="com.mytutorials.spring.ws.cxf.common.service.api.ContactUsService" />
+		<property name="address"
+			value="http://localhost:8080/spring.ws.cxf/webservices/contactus" />
+		<property name="serviceFactory" ref="jaxwsAndAegisServiceFactory" />
+	</bean>
+
+	<!-- Web service dynamic proxy -->
+	<bean id="contactUsServiceClient"
+		class="com.mytutorials.spring.ws.cxf.common.service.api.ContactUsService"
+		factory-bean="contactUsFactory" factory-method="create" />
+
+	<bean id="webServiceCXFClient"
+		class="com.mytutorials.spring.ws.cxf.client.WebServiceCXFClient" />
+
+</beans>

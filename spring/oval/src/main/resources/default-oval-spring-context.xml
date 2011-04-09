@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Our service person. -->
+	<bean class="com.mytutorials.spring.oval.service.DefaultPersonService" />
+
+	<bean id="ovalGuardInterceptor" class="net.sf.oval.guard.GuardInterceptor" />
+
+	<bean
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<property name="proxyTargetClass" value="true" />
+		<property name="beanNames" value="*Service*" />
+		<property name="interceptorNames">
+			<list>
+				<value>ovalGuardInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>

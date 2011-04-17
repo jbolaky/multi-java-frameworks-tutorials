@@ -2,6 +2,7 @@ package com.mytutorials.domain.bookstore.repository.impl;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -309,6 +310,20 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 		assertNotNull(book);
 		assertNotNull(book.getId());
 		assertEquals("EJB Pro 3", book.getTitle());
+	}
+
+	@Test
+	public void testFindByTitle() {
+
+		testSave();
+
+		List<DefaultBook> books = bookStoreRepository.findByTitle("Design Patterns");
+
+		assertThat("books should not be null", books, notNullValue());
+
+		for (Book book : books) {
+			assertThat(book.getTitle(), is("Design Patterns"));
+		}
 	}
 
 	// @Test

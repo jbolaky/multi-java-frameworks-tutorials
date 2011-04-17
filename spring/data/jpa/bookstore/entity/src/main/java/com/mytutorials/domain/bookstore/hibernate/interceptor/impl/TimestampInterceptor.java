@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.hibernate.EmptyInterceptor;
 import org.hibernate.PropertyAccessException;
 import org.hibernate.type.Type;
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 
 import com.mytutorials.domain.bookstore.hibernate.interceptor.api.TimestampEntity;
 
@@ -30,7 +30,7 @@ public class TimestampInterceptor extends EmptyInterceptor {
 
 	private void setTimestamps(Object entity, String[] fields, Object[] state,
 			String[] propertyNames) {
-		LocalDateTime currentDateTime = new LocalDateTime();
+		DateTime currentDateTime = new DateTime();
 
 		for (String nextField : fields) {
 			try {

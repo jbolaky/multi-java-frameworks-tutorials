@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<context:annotation-config />
 	<tx:annotation-driven />
-	<context:spring-configured />
 
-	<context:component-scan base-package="com.mytutorials.domain.bookstore.repository.impl" />
+	<jpa:repositories base-package="com.mytutorials.domain.bookstore.repository.api" />
+
+	<context:component-scan
+		base-package="com.mytutorials.domain.bookstore.repository.impl" />
+
+	<context:component-scan
+		base-package="com.mytutorials.domain.bookstore.repository.impl" />
 
 	<!-- JPA EntityManagerFactory -->
 	<bean id="bookstore_entity_entityManagerFactory"
@@ -35,8 +39,11 @@
 		<property name="persistenceXmlLocation" value="classpath:META-INF/bookstore-persistence.xml" />
 	</bean>
 
-	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager"
-		p:entityManagerFactory-ref="bookstore_entity_entityManagerFactory" />
+	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="bookstore_entity_entityManagerFactory" />
+	</bean>
+
+	<alias name="txManager" alias="transactionManager" />
 
 	<!-- TO uncomment and comment above txManager if wants AOP to manage Transaction -->
 	<!-- bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager" 
@@ -55,6 +62,8 @@
 			<list>
 				<bean
 					class="com.mytutorials.domain.bookstore.hibernate.interceptor.impl.TimestampInterceptor" />
+				<bean
+					class="com.mytutorials.domain.bookstore.hibernate.interceptor.impl.UsernameInterceptor" />
 			</list>
 		</property>
 	</bean>

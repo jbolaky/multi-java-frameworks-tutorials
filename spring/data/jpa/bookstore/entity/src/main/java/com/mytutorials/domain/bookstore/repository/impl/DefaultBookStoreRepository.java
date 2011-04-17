@@ -11,14 +11,12 @@ import org.hibernate.criterion.Restrictions;
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
-import org.springframework.stereotype.Repository;
 
 import com.mytutorials.domain.bookstore.entity.mapping.api.Book;
 import com.mytutorials.domain.bookstore.entity.mapping.impl.DefaultBook;
-import com.mytutorials.domain.bookstore.repository.api.BookStoreRepository;
 
-@Repository(value = "default_BookStore_Repository")
-public class DefaultBookStoreRepository implements BookStoreRepository {
+//@Repository(value = "default_BookStore_Repository")
+public class DefaultBookStoreRepository /* implements BookStoreRepository */ {
 
 	@PersistenceContext(unitName = "bookstore_persistence_unit_name")
 	private EntityManager entityManager;

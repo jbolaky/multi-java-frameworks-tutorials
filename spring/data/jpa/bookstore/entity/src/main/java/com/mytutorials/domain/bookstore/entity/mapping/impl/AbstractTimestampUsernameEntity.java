@@ -7,14 +7,15 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 
 import org.hibernate.annotations.Type;
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 
 import com.mytutorials.domain.bookstore.entity.mapping.api.TimestampUsername;
 import com.mytutorials.domain.bookstore.hibernate.interceptor.api.TimestampEntity;
+import com.mytutorials.domain.bookstore.hibernate.interceptor.api.UsernameEntity;
 
 @MappedSuperclass
 public abstract class AbstractTimestampUsernameEntity implements
-		TimestampUsername, TimestampEntity {
+		TimestampUsername, TimestampEntity, UsernameEntity {
 
 	private static final long serialVersionUID = 1836445425143824225L;
 
@@ -24,14 +25,14 @@ public abstract class AbstractTimestampUsernameEntity implements
 
 	@Column(name = "CREATION_DATE_TIME")
 	@Type(type = "hibernate_persistentDateTime")
-	private LocalDateTime creationDateTime;
+	private DateTime creationDateTime;
 
 	@Column(name = "CREATION_USERNAME")
 	private String creationUsername;
 
 	@Column(name = "LAST_MODIFIED_DATE_TIME")
 	@Type(type = "hibernate_persistentDateTime")
-	private LocalDateTime lastModifiedDateTime;
+	private DateTime lastModifiedDateTime;
 
 	@Column(name = "LAST_MODIFIED_USERNAME")
 	private String lastModifiedUsername;
@@ -40,7 +41,7 @@ public abstract class AbstractTimestampUsernameEntity implements
 		return version;
 	}
 
-	public LocalDateTime getCreationDateTime() {
+	public DateTime getCreationDateTime() {
 		return creationDateTime;
 	}
 
@@ -48,7 +49,7 @@ public abstract class AbstractTimestampUsernameEntity implements
 		return creationUsername;
 	}
 
-	public LocalDateTime getLastModifiedDateTime() {
+	public DateTime getLastModifiedDateTime() {
 		return lastModifiedDateTime;
 	}
 

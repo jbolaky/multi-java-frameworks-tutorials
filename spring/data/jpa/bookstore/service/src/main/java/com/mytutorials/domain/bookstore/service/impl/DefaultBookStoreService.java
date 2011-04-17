@@ -2,14 +2,14 @@ package com.mytutorials.domain.bookstore.service.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import net.sf.oval.guard.Guarded;
 
 import org.joda.time.LocalDate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mytutorials.domain.bookstore.entity.mapping.api.Book;
+import com.mytutorials.domain.bookstore.entity.mapping.impl.DefaultBook;
 import com.mytutorials.domain.bookstore.repository.api.BookStoreRepository;
 import com.mytutorials.domain.bookstore.service.api.BookStoreService;
 
@@ -17,23 +17,24 @@ import com.mytutorials.domain.bookstore.service.api.BookStoreService;
 @Service(value = "default_BookStore_Service")
 public class DefaultBookStoreService implements BookStoreService {
 
-	@Resource(name = "default_BookStore_Repository")
+	@Autowired
 	private BookStoreRepository bookStoreRepository;
 
 	public Book persist(Book book) {
-		return bookStoreRepository.persist(book);
+		return bookStoreRepository.save((DefaultBook) book);
 	}
 
 	public Book findById(Long id) {
-		return bookStoreRepository.findById(id);
+		return bookStoreRepository.findOne(id);
 	}
 
 	public Book merge(Book book) {
-		return bookStoreRepository.merge(book);
+		return bookStoreRepository.save((DefaultBook) book);
 	}
 
 	public List<Book> findByCreationDateTime(LocalDate from, LocalDate to) {
-		return bookStoreRepository.findByCreationDateTime(from, to);
+		return null;
+		/* return bookStoreRepository.findByCreationDateTime(from, to); */
 	}
 
 	public void flush() {

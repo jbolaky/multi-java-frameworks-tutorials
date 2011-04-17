@@ -14,4 +14,6 @@ public interface Book extends TimestampUsername, Serializable {
 	Integer getTotalNumberOfPages();
 
 	String getEdition();
+
+	void addAuthor(Author author);
 }

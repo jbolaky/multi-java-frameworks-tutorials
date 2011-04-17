@@ -72,11 +72,6 @@
 				<artifactId>hibernate-core</artifactId>
 			</dependency>
 
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>ejb3-persistence</artifactId>
-			</dependency>
-
 		<!-- AspectJ Runtime -->
 			<dependency>
 				<groupId>org.aspectj</groupId>

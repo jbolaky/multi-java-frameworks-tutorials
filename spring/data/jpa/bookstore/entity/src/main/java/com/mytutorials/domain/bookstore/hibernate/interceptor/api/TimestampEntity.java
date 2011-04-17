@@ -1,10 +1,10 @@
 package com.mytutorials.domain.bookstore.hibernate.interceptor.api;
 
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 
 public interface TimestampEntity {
 
-	public LocalDateTime getCreationDateTime();
+	public DateTime getCreationDateTime();
 
-	public LocalDateTime getLastModifiedDateTime();
+	public DateTime getLastModifiedDateTime();
 }

@@ -3,17 +3,17 @@ package com.mytutorials.domain.bookstore.entity.mapping.api;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 
 public interface TimestampUsername extends Serializable {
 
 	Timestamp getVersion();
 
-	LocalDateTime getCreationDateTime();
+	DateTime getCreationDateTime();
 
 	String getCreationUsername();
 
-	LocalDateTime getLastModifiedDateTime();
+	DateTime getLastModifiedDateTime();
 
 	String getLastModifiedUsername();
 }

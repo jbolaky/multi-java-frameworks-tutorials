@@ -9,4 +9,6 @@ import com.mytutorials.domain.bookstore.entity.mapping.impl.DefaultBook;
 public interface BookStoreRepository extends JpaRepository<DefaultBook, Long> {
 
 	List<DefaultBook> findByTitle(String bookTitle);
+
+	List<DefaultBook> findByAuthorsFirstName(String firstName);
 }

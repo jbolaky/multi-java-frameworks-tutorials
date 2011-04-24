@@ -1,6 +1,7 @@
 package com.mytutorials.domain.bookstore.repository.impl;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertEquals;
@@ -10,6 +11,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.joda.time.LocalDate;
 import org.junit.Before;
@@ -317,12 +319,52 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 
 		testSave();
 
-		List<DefaultBook> books = bookStoreRepository.findByTitle("Design Patterns");
+		List<DefaultBook> books = bookStoreRepository
+				.findByTitle("Design Patterns");
 
 		assertThat("books should not be null", books, notNullValue());
 
 		for (Book book : books) {
 			assertThat(book.getTitle(), is("Design Patterns"));
+		}
+	}
+
+	@Test
+	public void findByAuthorsFirstName() {
+
+		testSave();
+
+		DefaultBook defaultBook = createBook("Design Patterns", "2nd Edition",
+				123);
+
+		Author author2 = createAuthor(defaultBook, "Jurgen", "Holler");
+
+		Book book = bookStoreRepository.save(defaultBook);
+		assertNotNull(book);
+		assertNotNull(book.getId());
+		assertNotNull(book.getCreationDateTime());
+		assertThat(book.getCreationUsername(), is("Javaid"));
+
+		defaultBook = createBook("Design Patterns", "2nd Edition", 123);
+
+		author2 = createAuthor(defaultBook, "Grady", "Holler");
+
+		book = bookStoreRepository.save(defaultBook);
+		assertNotNull(book);
+		assertNotNull(book.getId());
+		assertNotNull(book.getCreationDateTime());
+		assertThat(book.getCreationUsername(), is("Javaid"));
+
+		List<DefaultBook> books = bookStoreRepository
+				.findByAuthorsFirstName("Grady");
+
+		assertThat("books should not be null", books, notNullValue());
+		assertThat("books size should be 1", books.size(), is(2));
+
+		for (Book book1 : books) {
+			assertThat(
+					isFirstNamePresentInAuthors("Grady", book1.getAuthors()),
+					equalTo(true));
 		}
 	}
 
@@ -336,6 +378,26 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 		// List<Book> books = bookStoreRepository.findByCreationDateTime(from,
 		// to);
 		// assertFalse(books.isEmpty());
+	}
+
+	private boolean isFirstNamePresentInAuthors(String firstName,
+			Set<Author> authors) {
+
+		boolean isPresent = false;
+
+		if (firstName != null && authors != null && !authors.isEmpty()) {
+
+			for (Author author : authors) {
+
+				if (firstName.equals(author.getFirstName())) {
+
+					isPresent = true;
+					break;
+				}
+			}
+		}
+
+		return isPresent;
 	}
 
 	private DefaultBook createBook(String title, String edition,

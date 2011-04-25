@@ -36,7 +36,7 @@ import com.mytutorials.domain.bookstore.entity.mapping.api.Author;
 import com.mytutorials.domain.bookstore.entity.mapping.api.Book;
 import com.mytutorials.domain.bookstore.entity.mapping.impl.DefaultAuthor;
 import com.mytutorials.domain.bookstore.entity.mapping.impl.DefaultBook;
-import com.mytutorials.domain.bookstore.repository.api.BookStoreRepository;
+import com.mytutorials.domain.bookstore.repository.api.DataJPABookStoreRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -48,7 +48,7 @@ import com.mytutorials.domain.bookstore.repository.api.BookStoreRepository;
 public class DefaultBookStoreRepositoryIntegrationTest {
 
 	@Autowired
-	private BookStoreRepository bookStoreRepository;
+	private DataJPABookStoreRepository dataJPABookStoreRepository;
 
 	@Before
 	public void populateUsername() {
@@ -65,7 +65,7 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 		Author author = createAuthor(defaultBook, "Grady", "Booch");
 		Author author2 = createAuthor(defaultBook, "Jurgen", "Holler");
 
-		Book book = bookStoreRepository.save(defaultBook);
+		Book book = dataJPABookStoreRepository.save(defaultBook);
 		assertNotNull(book);
 		assertNotNull(book.getId());
 		assertNotNull(book.getCreationDateTime());
@@ -97,7 +97,7 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 		defaultBooks.add(defaultBook2);
 		defaultBooks.add(defaultBook3);
 
-		List<DefaultBook> defaultBooks2 = bookStoreRepository
+		List<DefaultBook> defaultBooks2 = dataJPABookStoreRepository
 				.save(defaultBooks);
 
 		for (Book book : defaultBooks2) {
@@ -115,11 +115,11 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 				123);
 		Author author = createAuthor(defaultBook, "Grady", "Booch");
 
-		Book book = bookStoreRepository.save(defaultBook);
+		Book book = dataJPABookStoreRepository.save(defaultBook);
 		assertNotNull(book);
 		assertNotNull(book.getId());
 
-		book = bookStoreRepository.findOne(book.getId());
+		book = dataJPABookStoreRepository.findOne(book.getId());
 		assertNotNull(book);
 		assertNotNull(book.getId());
 		assertThat(book.getLastModifiedUsername(), is("Javaid"));
@@ -132,12 +132,12 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 				123);
 		Author author = createAuthor(defaultBook, "Grady", "Booch");
 
-		Book book = bookStoreRepository.saveAndFlush(defaultBook);
+		Book book = dataJPABookStoreRepository.saveAndFlush(defaultBook);
 		assertNotNull(book);
 		assertNotNull(book.getId());
 		assertThat(book.getLastModifiedUsername(), is("Javaid"));
 
-		assertTrue(bookStoreRepository.exists(book.getId()));
+		assertTrue(dataJPABookStoreRepository.exists(book.getId()));
 	}
 
 	@Test
@@ -147,11 +147,11 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 				123);
 		Author author = createAuthor(defaultBook, "Grady", "Booch");
 
-		Book book = bookStoreRepository.save(defaultBook);
+		Book book = dataJPABookStoreRepository.save(defaultBook);
 		assertNotNull(book);
 		assertNotNull(book.getId());
 
-		assertTrue(bookStoreRepository.count() > 0);
+		assertTrue(dataJPABookStoreRepository.count() > 0);
 	}
 
 	@Test
@@ -161,13 +161,13 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 				123);
 		Author author = createAuthor(defaultBook, "Grady", "Booch");
 
-		Book book = bookStoreRepository.save(defaultBook);
+		Book book = dataJPABookStoreRepository.save(defaultBook);
 		assertNotNull(book);
 		assertNotNull(book.getId());
 
-		bookStoreRepository.delete(defaultBook);
+		dataJPABookStoreRepository.delete(defaultBook);
 
-		book = bookStoreRepository.findOne(book.getId());
+		book = dataJPABookStoreRepository.findOne(book.getId());
 		assertNull(book);
 	}
 
@@ -196,7 +196,7 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 		defaultBooks.add(defaultBook2);
 		defaultBooks.add(defaultBook3);
 
-		List<DefaultBook> defaultBooks2 = bookStoreRepository
+		List<DefaultBook> defaultBooks2 = dataJPABookStoreRepository
 				.save(defaultBooks);
 
 		for (Book book : defaultBooks2) {
@@ -208,7 +208,7 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 		Order order = new Order(Direction.ASC, "totalNumberOfPages");
 		Sort sort = new Sort(order);
 
-		List<DefaultBook> books = bookStoreRepository.findAll(sort);
+		List<DefaultBook> books = dataJPABookStoreRepository.findAll(sort);
 
 		assertNotNull(books);
 
@@ -257,7 +257,7 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 		defaultBooks.add(defaultBook4);
 		defaultBooks.add(defaultBook5);
 
-		List<DefaultBook> defaultBooks2 = bookStoreRepository
+		List<DefaultBook> defaultBooks2 = dataJPABookStoreRepository
 				.save(defaultBooks);
 
 		for (Book book : defaultBooks2) {
@@ -269,7 +269,7 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 		Pageable pageable = new PageRequest(1, 2, Direction.DESC,
 				"totalNumberOfPages");
 
-		Page<DefaultBook> book = bookStoreRepository.findAll(pageable);
+		Page<DefaultBook> book = dataJPABookStoreRepository.findAll(pageable);
 
 		assertNotNull(book);
 
@@ -296,8 +296,8 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 				123);
 		Author author = createAuthor(defaultBook, "Grady", "Booch");
 
-		Book book = bookStoreRepository.saveAndFlush(defaultBook);
-		bookStoreRepository.flush();
+		Book book = dataJPABookStoreRepository.saveAndFlush(defaultBook);
+		dataJPABookStoreRepository.flush();
 		assertNotNull(book);
 		assertNotNull(book.getId());
 		assertEquals("Design Patterns", book.getTitle());
@@ -305,10 +305,10 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 		bookId = book.getId();
 
 		((DefaultBook) book).setTitle("EJB Pro 3");
-		book = bookStoreRepository.saveAndFlush((DefaultBook) book);
-		bookStoreRepository.flush();
+		book = dataJPABookStoreRepository.saveAndFlush((DefaultBook) book);
+		dataJPABookStoreRepository.flush();
 
-		book = bookStoreRepository.findOne(bookId);
+		book = dataJPABookStoreRepository.findOne(bookId);
 		assertNotNull(book);
 		assertNotNull(book.getId());
 		assertEquals("EJB Pro 3", book.getTitle());
@@ -319,7 +319,7 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 
 		testSave();
 
-		List<DefaultBook> books = bookStoreRepository
+		List<DefaultBook> books = dataJPABookStoreRepository
 				.findByTitle("Design Patterns");
 
 		assertThat("books should not be null", books, notNullValue());
@@ -339,7 +339,7 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 
 		Author author2 = createAuthor(defaultBook, "Jurgen", "Holler");
 
-		Book book = bookStoreRepository.save(defaultBook);
+		Book book = dataJPABookStoreRepository.save(defaultBook);
 		assertNotNull(book);
 		assertNotNull(book.getId());
 		assertNotNull(book.getCreationDateTime());
@@ -349,13 +349,13 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 
 		author2 = createAuthor(defaultBook, "Grady", "Holler");
 
-		book = bookStoreRepository.save(defaultBook);
+		book = dataJPABookStoreRepository.save(defaultBook);
 		assertNotNull(book);
 		assertNotNull(book.getId());
 		assertNotNull(book.getCreationDateTime());
 		assertThat(book.getCreationUsername(), is("Javaid"));
 
-		List<DefaultBook> books = bookStoreRepository
+		List<DefaultBook> books = dataJPABookStoreRepository
 				.findByAuthorsFirstName("Grady");
 
 		assertThat("books should not be null", books, notNullValue());
@@ -443,7 +443,7 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 		defaultBooks.add(defaultBook7);
 		defaultBooks.add(defaultBook8);
 
-		List<DefaultBook> defaultBooks2 = bookStoreRepository
+		List<DefaultBook> defaultBooks2 = dataJPABookStoreRepository
 				.save(defaultBooks);
 
 		for (Book book : defaultBooks2) {
@@ -455,7 +455,7 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 		Pageable pageable = new PageRequest(1, 2, Direction.DESC,
 				"totalNumberOfPages");
 
-		Page<DefaultBook> book = bookStoreRepository.findByAuthorsFirstName(
+		Page<DefaultBook> book = dataJPABookStoreRepository.findByAuthorsFirstName(
 				"Grady", pageable);
 
 		assertNotNull(book);
@@ -552,7 +552,7 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 		defaultBooks.add(defaultBook7);
 		defaultBooks.add(defaultBook8);
 
-		List<DefaultBook> defaultBooks2 = bookStoreRepository
+		List<DefaultBook> defaultBooks2 = dataJPABookStoreRepository
 				.save(defaultBooks);
 
 		for (Book book : defaultBooks2) {
@@ -563,7 +563,7 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 
 		Sort sort = new Sort(Direction.DESC, "totalNumberOfPages");
 
-		List<DefaultBook> books = bookStoreRepository.findByAuthorsFirstName(
+		List<DefaultBook> books = dataJPABookStoreRepository.findByAuthorsFirstName(
 				"Grady", sort);
 
 		assertNotNull(books);

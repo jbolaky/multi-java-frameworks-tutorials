@@ -16,7 +16,7 @@
 
 	<jpa:repositories base-package="com.mytutorials.domain.bookstore.repository.api">
 		<repository:include-filter type="regex"
-			expression=".*Repository" />
+			expression=".DataJPA*" />
 	</jpa:repositories>
 
 	<context:component-scan

@@ -368,6 +368,115 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 		}
 	}
 
+	@Test
+	public void testFindByAuthorsFirstNameAndPaging() {
+
+		List<DefaultBook> defaultBooks = null;
+
+		DefaultBook defaultBook = createBook("Design Patterns", "2nd Edition",
+				3);
+
+		DefaultBook defaultBook2 = createBook("Design Patterns", "2nd Edition",
+				2);
+
+		DefaultBook defaultBook3 = createBook("Design Patterns", "2nd Edition",
+				10);
+
+		DefaultBook defaultBook4 = createBook("Design Patterns", "2nd Edition",
+				14);
+
+		DefaultBook defaultBook5 = createBook("Design Patterns", "2nd Edition",
+				510);
+
+		DefaultBook defaultBook6 = createBook("Design Patterns", "2nd Edition",
+				510);
+
+		DefaultBook defaultBook7 = createBook("Design Patterns", "2nd Edition",
+				510);
+
+		DefaultBook defaultBook8 = createBook("Design Patterns", "2nd Edition",
+				510);
+
+		Author author = createAuthor(defaultBook2, "Grady", "Booch");
+		Author author2 = createAuthor(defaultBook2, "Jurgen", "Holler");
+		Author author3 = createAuthor(defaultBook3, "Douglas", "Adams");
+		Author author4 = createAuthor(defaultBook3, "Grady", "Booch");
+		Author author5 = createAuthor(defaultBook4, "Grady", "Booch");
+		Author author6 = createAuthor(defaultBook4, "Jurgen", "Holler");
+		Author author7 = createAuthor(defaultBook5, "Grady", "Booch");
+		Author author8 = createAuthor(defaultBook5, "Wiliam", "Shakespeares");
+		Author author9 = createAuthor(defaultBook6, "Grady", "Booch");
+		Author author10 = createAuthor(defaultBook6, "Jurgen", "Holler");
+		Author author11 = createAuthor(defaultBook7, "Douglas", "Adams");
+		Author author12 = createAuthor(defaultBook7, "Grady", "Booch");
+		Author author13 = createAuthor(defaultBook8, "Grady", "Booch");
+		Author author14 = createAuthor(defaultBook8, "Jurgen", "Holler");
+
+		defaultBook2.addAuthor(author);
+		defaultBook2.addAuthor(author2);
+
+		defaultBook3.addAuthor(author3);
+		defaultBook3.addAuthor(author4);
+
+		defaultBook4.addAuthor(author5);
+		defaultBook4.addAuthor(author6);
+
+		defaultBook5.addAuthor(author7);
+		defaultBook5.addAuthor(author8);
+
+		defaultBook6.addAuthor(author9);
+		defaultBook6.addAuthor(author10);
+
+		defaultBook7.addAuthor(author11);
+		defaultBook7.addAuthor(author12);
+
+		defaultBook8.addAuthor(author13);
+		defaultBook8.addAuthor(author14);
+
+		defaultBooks = new ArrayList<DefaultBook>();
+		defaultBooks.add(defaultBook);
+		defaultBooks.add(defaultBook2);
+		defaultBooks.add(defaultBook3);
+		defaultBooks.add(defaultBook4);
+		defaultBooks.add(defaultBook5);
+		defaultBooks.add(defaultBook6);
+		defaultBooks.add(defaultBook7);
+		defaultBooks.add(defaultBook8);
+
+		List<DefaultBook> defaultBooks2 = bookStoreRepository
+				.save(defaultBooks);
+
+		for (Book book : defaultBooks2) {
+			assertNotNull(book);
+			assertNotNull(book.getId());
+			assertNotNull(book.getCreationDateTime());
+		}
+
+		Pageable pageable = new PageRequest(1, 2, Direction.DESC,
+				"totalNumberOfPages");
+
+		Page<DefaultBook> book = bookStoreRepository.findByAuthorsFirstName(
+				"Grady", pageable);
+
+		assertNotNull(book);
+
+		assertTrue(book.getTotalPages() == 4);
+		assertTrue(book.getNumber() == 1);
+		assertTrue(book.getSize() == 2);
+
+		List<DefaultBook> books = book.getContent();
+
+		Integer totalNumPages = Integer.MAX_VALUE;
+		for (Book defaultBook9 : books) {
+
+			assertTrue(totalNumPages >= defaultBook9.getTotalNumberOfPages());
+			assertThat(
+					isFirstNamePresentInAuthors("Grady",
+							defaultBook9.getAuthors()), equalTo(true));
+			totalNumPages = defaultBook9.getTotalNumberOfPages();
+		}
+	}
+
 	// @Test
 	public void tesFindByCreationDateTime() {
 		testSave();

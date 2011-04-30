@@ -49,6 +49,10 @@ public class DefaultAuthor extends AbstractTimestampUsernameEntity implements
 		return id;
 	}
 
+	public boolean isNew() {
+		return id == null ? true : false;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}

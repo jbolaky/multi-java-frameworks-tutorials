@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,6 +21,7 @@ import com.mytutorials.domain.bookstore.entity.mapping.api.Book;
 @Entity
 @Table(name = "BKS_BOOK")
 @TypeDef(name = "hibernate_persistentDateTime", typeClass = org.joda.time.contrib.hibernate.PersistentDateTime.class)
+@NamedQuery(name = "DefaultBook.findByEdition", query = "select b from DefaultBook b where b.edition = ?1")
 public class DefaultBook extends AbstractTimestampUsernameEntity implements
 		Book {
 
@@ -44,6 +46,10 @@ public class DefaultBook extends AbstractTimestampUsernameEntity implements
 
 	public Long getId() {
 		return id;
+	}
+
+	public boolean isNew() {
+		return id == null ? true : false;
 	}
 
 	public String getTitle() {

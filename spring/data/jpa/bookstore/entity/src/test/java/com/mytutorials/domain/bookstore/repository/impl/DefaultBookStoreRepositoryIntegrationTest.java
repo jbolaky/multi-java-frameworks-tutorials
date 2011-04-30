@@ -455,8 +455,8 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 		Pageable pageable = new PageRequest(1, 2, Direction.DESC,
 				"totalNumberOfPages");
 
-		Page<DefaultBook> book = dataJPABookStoreRepository.findByAuthorsFirstName(
-				"Grady", pageable);
+		Page<DefaultBook> book = dataJPABookStoreRepository
+				.findByAuthorsFirstName("Grady", pageable);
 
 		assertNotNull(book);
 
@@ -563,8 +563,8 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 
 		Sort sort = new Sort(Direction.DESC, "totalNumberOfPages");
 
-		List<DefaultBook> books = dataJPABookStoreRepository.findByAuthorsFirstName(
-				"Grady", sort);
+		List<DefaultBook> books = dataJPABookStoreRepository
+				.findByAuthorsFirstName("Grady", sort);
 
 		assertNotNull(books);
 
@@ -579,6 +579,89 @@ public class DefaultBookStoreRepositoryIntegrationTest {
 							defaultBook9.getAuthors()), equalTo(true));
 			totalNumPages = defaultBook9.getTotalNumberOfPages();
 		}
+	}
+
+	@Test
+	public void testFindByEdition() {
+
+		testSave();
+		testSave();
+
+		final String edition = "2nd Edition";
+
+		List<DefaultBook> defaultBooks = dataJPABookStoreRepository
+				.findByEdition(edition);
+
+		assertThat(defaultBooks, is(notNullValue()));
+		assertThat(defaultBooks.size(), is(2));
+
+		for (DefaultBook defaultBook : defaultBooks) {
+
+			assertThat(defaultBook.getEdition(), is(edition));
+		}
+	}
+
+	@Test
+	public void testFindByEditionAndTitleAndTotalNumberOfPages() {
+
+		final String edition = "3rd";
+		final String title = "Lion King";
+		final Integer totalNumPages = 1234;
+
+		testSave();
+		testSave();
+		testSave();
+
+		DefaultBook defaultBook = createBook(title, edition, totalNumPages);
+
+		Author author = createAuthor(defaultBook, "Grady", "Booch");
+		Author author2 = createAuthor(defaultBook, "Jurgen", "Holler");
+
+		Book book = dataJPABookStoreRepository.save(defaultBook);
+		assertNotNull(book);
+		assertNotNull(book.getId());
+		assertNotNull(book.getCreationDateTime());
+		assertThat(book.getCreationUsername(), is("Javaid"));
+
+		List<DefaultBook> defaultBooks = dataJPABookStoreRepository
+				.findByEditionAndTitleAndTotalNumberOfPages(edition, title,
+						totalNumPages);
+
+		assertThat(defaultBooks, is(notNullValue()));
+		assertThat(defaultBooks.size(), is(1));
+
+		for (DefaultBook defaultBook1 : defaultBooks) {
+
+			assertThat(defaultBook1.getEdition(), is(edition));
+			assertThat(defaultBook1.getTitle(), is(title));
+			assertThat(defaultBook1.getTotalNumberOfPages(), is(totalNumPages));
+		}
+	}
+
+	@Test
+	public void testUpdateTitleById() {
+
+		final String newTitle = "newTitle";
+
+		DefaultBook defaultBook = createBook("Design Patterns", "2nd Edition",
+				123);
+		Author author = createAuthor(defaultBook, "Grady", "Booch");
+
+		Book book = dataJPABookStoreRepository.save(defaultBook);
+		assertNotNull(book);
+		assertNotNull(book.getId());
+
+		book = dataJPABookStoreRepository.findOne(book.getId());
+		assertNotNull(book);
+		assertNotNull(book.getId());
+		assertThat(book.getLastModifiedUsername(), is("Javaid"));
+
+		dataJPABookStoreRepository.updateTitleById(newTitle, book.getId());
+
+		book = dataJPABookStoreRepository.findOne(book.getId());
+		assertNotNull(book);
+		assertNotNull(book.getId());
+		assertThat(book.getTitle(), is(newTitle));
 	}
 
 	// @Test

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.mytutorials.domain.bookstore.entity.mapping.api.Book;
 import com.mytutorials.domain.bookstore.entity.mapping.impl.DefaultBook;
-import com.mytutorials.domain.bookstore.repository.api.BookStoreRepository;
+import com.mytutorials.domain.bookstore.repository.api.DataJPABookStoreRepository;
 import com.mytutorials.domain.bookstore.service.api.BookStoreService;
 
 @Guarded(inspectInterfaces = true)
@@ -18,7 +18,7 @@ import com.mytutorials.domain.bookstore.service.api.BookStoreService;
 public class DefaultBookStoreService implements BookStoreService {
 
 	@Autowired
-	private BookStoreRepository bookStoreRepository;
+	private DataJPABookStoreRepository bookStoreRepository;
 
 	public Book persist(Book book) {
 		return bookStoreRepository.save((DefaultBook) book);

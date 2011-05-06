@@ -29,7 +29,7 @@
 		<project.version>1.0-SNAPSHOT</project.version>
 		<commons-utility.version>2.5</commons-utility.version>
 		<spring.version>3.0.5.RELEASE</spring.version>
-		<spring-faces.version>2.2.1.RELEASE</spring-faces.version>
+		<spring-faces.version>2.3.0.RELEASE</spring-faces.version>
 		<spring-security-core.version>3.0.5.RELEASE</spring-security-core.version>
 		<springsource.jpa.version>2.0.0</springsource.jpa.version>
 		<spring-data-jpa.version>1.0.0.M2</spring-data-jpa.version>

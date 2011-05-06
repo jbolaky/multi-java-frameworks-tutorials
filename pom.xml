@@ -60,6 +60,7 @@
 		<geronimo-ejb_3.0_spec.version>1.0.1</geronimo-ejb_3.0_spec.version>
 		<maven-ear-plugin.version>2.5</maven-ear-plugin.version>
 		<mysql.version>5.1.9</mysql.version>
+		<apache.tiles.version>2.1.3</apache.tiles.version>
 	</properties>
 
 	<dependencies>
@@ -425,6 +426,13 @@
 				<artifactId>geronimo-ejb_3.0_spec</artifactId>
 				<version>${geronimo-ejb_3.0_spec.version}</version>
 				<scope>provided</scope>
+			</dependency>
+			
+			<!--Apache Tiles-->
+			<dependency>
+				<groupId>org.apache.tiles</groupId>
+				<artifactId>tiles-jsp</artifactId>
+				<version>${apache.tiles.version}</version>		
 			</dependency>
 
 			<!-- Test Dependency -->

@@ -1,0 +1,2 @@
+to run with apache tomcat.
+url root access is http://localhost:8080/spring.tiles/

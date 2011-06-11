@@ -19,10 +19,6 @@
 		<module>bookstore</module>
 	</modules>
 
-	<properties>
-		<mysql.version>5.1.9</mysql.version>
-	</properties>
-
 	<dependencies>
 		<!-- InMemory DB-->
 		<dependency>
@@ -118,11 +114,9 @@
 			<artifactId>spring-test</artifactId>
 		</dependency>
 
-				<dependency>
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<scope>test</scope>
-			<version>${mysql.version}</version>
 		</dependency>
 
 	</dependencies>

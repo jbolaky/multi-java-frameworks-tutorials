@@ -28,7 +28,7 @@
 		<log4j.version>1.2.14</log4j.version>
 		<project.version>1.0-SNAPSHOT</project.version>
 		<commons-utility.version>2.5</commons-utility.version>
-		<spring.version>3.0.5.RELEASE</spring.version>
+		<spring.version>3.1.0.M2</spring.version>
 		<spring-faces.version>2.3.0.RELEASE</spring-faces.version>
 		<spring-security-core.version>3.0.5.RELEASE</spring-security-core.version>
 		<springsource.jpa.version>2.0.0</springsource.jpa.version>
@@ -39,7 +39,7 @@
 		<aspectj.version>1.6.9</aspectj.version>
 		<cglib.version>2.2</cglib.version>
 		<hessian.version>4.0.7</hessian.version>
-		<oval.version>1.61</oval.version>
+		<oval.version>1.70</oval.version>
 		<spring-remoting.version>2.0.8</spring-remoting.version>
 		<ws.cxf.version>2.3.0</ws.cxf.version>
 		<rest.cxf.version>2.3.0</rest.cxf.version>

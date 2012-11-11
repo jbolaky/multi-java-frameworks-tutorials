@@ -19,20 +19,20 @@
 	</modules>
 
 	<properties>
-		<build.plugins.plugin.version>2.3</build.plugins.plugin.version>
-		<powermock.version>1.3.7</powermock.version>
-		<junit.version>4.7</junit.version>
-		<hamcreat-all.version>1.1</hamcreat-all.version>
-		<mokito.version>1.8.4</mokito.version>
-		<xstream.version>1.3.1</xstream.version>
+				<build.plugins.plugin.version>2.3</build.plugins.plugin.version>
+		<powermock.version>1.4.12</powermock.version>
+		<junit.version>4.10</junit.version>
+		<hamcreat-all.version>1.3</hamcreat-all.version>
+		<mokito.version>1.9.5</mokito.version>
+		<xstream.version>1.4.3</xstream.version>
 		<log4j.version>1.2.14</log4j.version>
 		<project.version>1.0-SNAPSHOT</project.version>
 		<commons-utility.version>2.5</commons-utility.version>
-		<spring.version>3.1.0.M2</spring.version>
-		<spring-faces.version>2.3.0.RELEASE</spring-faces.version>
-		<spring-security-core.version>3.0.5.RELEASE</spring-security-core.version>
+		<spring.version>3.1.3.RELEASE</spring.version>
+		<spring-faces.version>2.3.1.RELEASE</spring-faces.version>
+		<spring-security-core.version>3.1.3.RELEASE</spring-security-core.version>
 		<springsource.jpa.version>2.0.0</springsource.jpa.version>
-		<spring-data-jpa.version>1.0.0.M2</spring-data-jpa.version>
+		<spring-data-jpa.version>1.1.0.RELEASE</spring-data-jpa.version>
 		<jstl.version>1.2</jstl.version>
 		<ognl.version>2.6.9</ognl.version>
 		<spring-agent.version>2.5.6</spring-agent.version>

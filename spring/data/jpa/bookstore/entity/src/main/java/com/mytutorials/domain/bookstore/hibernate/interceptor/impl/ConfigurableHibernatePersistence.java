@@ -9,17 +9,14 @@ import org.hibernate.EmptyInterceptor;
 import org.hibernate.Interceptor;
 import org.hibernate.ejb.Ejb3Configuration;
 import org.hibernate.ejb.HibernatePersistence;
-import org.hibernate.event.LoadEventListener;
-import org.hibernate.event.MergeEventListener;
-import org.hibernate.event.PostLoadEventListener;
-import org.hibernate.event.PreInsertEventListener;
-import org.hibernate.event.PreUpdateEventListener;
-import org.hibernate.event.SaveOrUpdateEventListener;
-import org.hibernate.event.def.DefaultLoadEventListener;
-import org.hibernate.event.def.DefaultMergeEventListener;
-import org.hibernate.event.def.DefaultPostLoadEventListener;
-import org.hibernate.event.def.DefaultSaveOrUpdateEventListener;
+import org.hibernate.event.spi.LoadEventListener;
+import org.hibernate.event.spi.MergeEventListener;
+import org.hibernate.event.spi.PostLoadEventListener;
+import org.hibernate.event.spi.PreInsertEventListener;
+import org.hibernate.event.spi.PreUpdateEventListener;
+import org.hibernate.event.spi.SaveOrUpdateEventListener;
 
+@SuppressWarnings("deprecation")
 public class ConfigurableHibernatePersistence extends HibernatePersistence {
 	private Interceptor interceptor;
 	private LoadEventListener loadEventListener;
@@ -100,6 +97,7 @@ public class ConfigurableHibernatePersistence extends HibernatePersistence {
 
 	protected void postprocessConfiguration(PersistenceUnitInfo info,
 			@SuppressWarnings("rawtypes") Map map, Ejb3Configuration configured) {
+		
 		if (this.interceptor != null) {
 			if ((configured.getInterceptor() == null)
 					|| (EmptyInterceptor.class.equals(configured
@@ -110,36 +108,6 @@ public class ConfigurableHibernatePersistence extends HibernatePersistence {
 						"Hibernate interceptor already set in persistence.xml ("
 								+ configured.getInterceptor() + ")");
 
-		}
-
-		if (getLoadEventListener() != null) {
-			LoadEventListener[] lel = { new DefaultLoadEventListener(),
-					getLoadEventListener() };
-			configured.getEventListeners().setLoadEventListeners(lel);
-		}
-		if (getSaveOrUpdateEventListener() != null) {
-			SaveOrUpdateEventListener[] lel = {
-					new DefaultSaveOrUpdateEventListener(),
-					getSaveOrUpdateEventListener() };
-			configured.getEventListeners().setSaveOrUpdateEventListeners(lel);
-		}
-		if (getMergeEventListener() != null) {
-			MergeEventListener[] el = { new DefaultMergeEventListener(),
-					getMergeEventListener() };
-			configured.getEventListeners().setMergeEventListeners(el);
-		}
-		if (getPostLoadEventListener() != null) {
-			PostLoadEventListener[] el = { new DefaultPostLoadEventListener(),
-					getPostLoadEventListener() };
-			configured.getEventListeners().setPostLoadEventListeners(el);
-		}
-		if (getPreInsertEventListener() != null) {
-			PreInsertEventListener[] el = { getPreInsertEventListener() };
-			configured.getEventListeners().setPreInsertEventListeners(el);
-		}
-		if (getPreUpdateEventListener() != null) {
-			PreUpdateEventListener[] el = { getPreUpdateEventListener() };
-			configured.getEventListeners().setPreUpdateEventListeners(el);
 		}
 	}
 }

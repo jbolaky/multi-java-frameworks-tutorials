@@ -6,11 +6,11 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.joda.time.LocalDate;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -29,7 +29,8 @@ import com.mytutorials.domain.bookstore.repository.api.BookStoreRepository;
 @Transactional
 public class DefaultBookStoreRepositoryIntegrationTest {
 
-	@Resource(name = "default_BookStore_Repository")
+	@Autowired
+	@Qualifier(value = "default_BookStore_Repository")
 	private BookStoreRepository bookStoreRepository;
 
 	@Test

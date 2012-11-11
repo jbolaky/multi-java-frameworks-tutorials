@@ -19,7 +19,7 @@ import com.mytutorials.domain.bookstore.entity.mapping.api.Book;
 
 @Entity
 @Table(name = "BKS_BOOK")
-@TypeDef(name = "hibernate_persistentDateTime", typeClass = org.joda.time.contrib.hibernate.PersistentLocalDateTime.class)
+@TypeDef(name = "hibernate_persistentDateTime", typeClass = org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime.class)
 public class DefaultBook extends AbstractTimestampUsernameEntity implements
 		Book {
 

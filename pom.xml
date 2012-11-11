@@ -19,7 +19,7 @@
 	</modules>
 
 	<properties>
-				<build.plugins.plugin.version>2.3</build.plugins.plugin.version>
+		<build.plugins.plugin.version>2.3</build.plugins.plugin.version>
 		<powermock.version>1.4.12</powermock.version>
 		<junit.version>4.10</junit.version>
 		<hamcreat-all.version>1.3</hamcreat-all.version>
@@ -45,14 +45,14 @@
 		<rest.cxf.version>2.3.0</rest.cxf.version>
 		<javax.servlet.version>2.5</javax.servlet.version>
 		<javax.ws.rs.version>1.1.1</javax.ws.rs.version>
-		<hibernate-entitymanager.version>3.5.6-Final</hibernate-entitymanager.version>
-		<hibernate-core.version>3.5.6-Final</hibernate-core.version>
-		<joda-time.version>1.6</joda-time.version>
-		<joda-time-hibernate.version>1.2</joda-time-hibernate.version>
+		<hibernate-entitymanager.version>4.1.7.Final</hibernate-entitymanager.version>
+		<hibernate-core.version>4.1.7.Final</hibernate-core.version>
+		<joda-time.version>2.1</joda-time.version>
+		<jadira-usertype.version>3.0.0.GA</jadira-usertype.version>
 		<commons-dbcp.version>1.2</commons-dbcp.version>
 		<slf4j-version>1.5.10</slf4j-version>
 		<commons-collections.version>3.2.1</commons-collections.version>
-		<hsqldb.version>1.8.0.7</hsqldb.version>
+		<hsqldb.version>2.2.8</hsqldb.version>
 		<maven-jetty-plugin.version>6.1.8</maven-jetty-plugin.version>
 		<dozer.version>5.3.1</dozer.version>
 		<httpclient.version>3.1</httpclient.version>
@@ -124,6 +124,12 @@
 
 			<!-- InMemory DB -->
 			<dependency>
+				<groupId>org.hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>${hsqldb.version}</version>
+			</dependency>
+			
+			<dependency>
 				<groupId>hsqldb</groupId>
 				<artifactId>hsqldb</artifactId>
 				<version>${hsqldb.version}</version>
@@ -150,21 +156,11 @@
 				<version>${joda-time.version}</version>
 			</dependency>
 
-			<!-- Joda Time Conversion For Hibernate -->
+			<!-- Jadira usertype Conversion For Hibernate -->
 			<dependency>
-				<groupId>joda-time</groupId>
-				<artifactId>joda-time-hibernate</artifactId>
-				<version>${joda-time-hibernate.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.hibernate</groupId>
-						<artifactId>hibernate</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>joda-time</groupId>
-						<artifactId>joda-time</artifactId>
-					</exclusion>
-				</exclusions>
+				<groupId>org.jadira.usertype</groupId>
+				<artifactId>usertype.core</artifactId>
+				<version>${jadira-usertype.version}</version>
 			</dependency>
 
 			<!-- Oval version -->

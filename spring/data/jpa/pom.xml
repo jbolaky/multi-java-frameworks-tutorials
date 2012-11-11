@@ -22,7 +22,7 @@
 	<dependencies>
 		<!-- InMemory DB -->
 		<dependency>
-			<groupId>hsqldb</groupId>
+			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 		</dependency>
 
@@ -44,10 +44,10 @@
 			<artifactId>joda-time</artifactId>
 		</dependency>
 
-		<!-- Joda Time Conversion For Hibernate -->
+		<!-- Jadira usertype Conversion For Hibernate -->
 		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time-hibernate</artifactId>
+			<groupId>org.jadira.usertype</groupId>
+			<artifactId>usertype.core</artifactId>
 		</dependency>
 
 		<!-- Hibernate -->
@@ -95,6 +95,12 @@
 		<dependency>
 			<groupId>javax.persistence</groupId>
 			<artifactId>com.springsource.javax.persistence</artifactId>
+		</dependency>
+
+		<!-- AOP dependency -->
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
 		</dependency>
 
 		<!-- Test dependency -->

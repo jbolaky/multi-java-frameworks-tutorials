@@ -20,7 +20,7 @@ import com.mytutorials.domain.bookstore.entity.mapping.api.Book;
 
 @Entity
 @Table(name = "BKS_BOOK")
-@TypeDef(name = "hibernate_persistentDateTime", typeClass = org.joda.time.contrib.hibernate.PersistentDateTime.class)
+@TypeDef(name = "hibernate_persistentDateTime", typeClass = org.jadira.usertype.dateandtime.joda.PersistentDateTime.class)
 @NamedQuery(name = "DefaultBook.findByEdition", query = "select b from DefaultBook b where b.edition = ?1")
 public class DefaultBook extends AbstractTimestampUsernameEntity implements
 		Book {

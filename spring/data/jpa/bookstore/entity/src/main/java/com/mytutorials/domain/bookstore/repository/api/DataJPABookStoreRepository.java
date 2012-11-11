@@ -30,7 +30,7 @@ public interface DataJPABookStoreRepository extends
 			@Param("edition") String edition, @Param("title") String title,
 			@Param("totalNumPages") Integer totalNumPages);
 
-	@Modifying
+	@Modifying(clearAutomatically = true)
 	@Query(value = "update DefaultBook b set b.title =?1 where b.id =?2")
 	void updateTitleById(String newTitle, Long bookId);
 }

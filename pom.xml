@@ -50,7 +50,7 @@
 		<joda-time.version>2.1</joda-time.version>
 		<jadira-usertype.version>3.0.0.GA</jadira-usertype.version>
 		<commons-dbcp.version>1.2</commons-dbcp.version>
-		<slf4j-version>1.5.10</slf4j-version>
+		<slf4j-version>1.7.2</slf4j-version>
 		<commons-collections.version>3.2.1</commons-collections.version>
 		<hsqldb.version>2.2.8</hsqldb.version>
 		<maven-jetty-plugin.version>6.1.8</maven-jetty-plugin.version>

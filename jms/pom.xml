@@ -17,7 +17,7 @@
 
 	<modules>
 		<module>point-to-point</module>
-		<module>publisher-subscriber</module>
+		<module>publisher-multiple-subscriber</module>
 	</modules>
 	
 

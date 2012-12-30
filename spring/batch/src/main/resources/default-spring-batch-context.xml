@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-3.1.xsd
+			http://www.springframework.org/schema/jdbc 
+			http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+			http://www.springframework.org/schema/util 
+			http://www.springframework.org/schema/util/spring-util-3.1.xsd
+			http://www.springframework.org/schema/aop 
+			http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+			http://www.springframework.org/schema/batch 
+			http://www.springframework.org/schema/batch/spring-batch-2.1.xsd">
+
+	<!-- Activates various annotations to be detected in bean classes -->
+	<context:annotation-config />
+
+	<import resource="classpath:/default-bookstore-service-context.xml" />
+	<import resource="spring-batch-job-context.xml" />
+
+	<job-repository id="jobRepository"
+		xmlns="http://www.springframework.org/schema/batch" data-source="jpaDataSource"
+		isolation-level-for-create="DEFAULT" transaction-manager="transactionManager" />
+
+	<bean id="taskExecutor" class="org.springframework.core.task.SimpleAsyncTaskExecutor" />
+
+	<bean id="jobLauncher"
+		class="org.springframework.batch.core.launch.support.SimpleJobLauncher"
+		p:jobRepository-ref="jobRepository" />
+
+	<bean id="defaultBookStoreServiceAclImpl"
+		class="com.mytutorials.spring.batch.acl.impl.DefaultBookStoreServiceAclImpl" />
+
+	<bean id="bookStoreServiceBookConverter"
+		class="com.mytutorials.spring.batch.acl.converter.BookStoreServiceBookConverter" />
+
+	<bean id="bookStoreServiceAuthorConverter"
+		class="com.mytutorials.spring.batch.acl.converter.BookStoreServiceAuthorConverter" />
+
+	<bean id="springBatchAuthorConverter"
+		class="com.mytutorials.spring.batch.acl.converter.SpringBatchAuthorConverter" />
+
+	<bean id="springBatchBookConverter"
+		class="com.mytutorials.spring.batch.acl.converter.SpringBatchBookConverter" />
+
+</beans>

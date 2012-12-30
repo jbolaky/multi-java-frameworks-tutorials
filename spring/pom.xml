@@ -25,6 +25,7 @@
 		<module>mvc</module>
 		<module>data</module>
 		<module>tiles</module>
+		<module>batch</module>
 	</modules>
 
 </project>

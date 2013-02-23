@@ -26,6 +26,7 @@
 		<module>data</module>
 		<module>tiles</module>
 		<module>batch</module>
+		<module>jms</module>
 	</modules>
 
 </project>

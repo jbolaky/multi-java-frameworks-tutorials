@@ -28,7 +28,7 @@ public class RawJmsTemplatePollingMessageConsumerTest {
 
 		broker = new BrokerService();
 		broker.setUseJmx(true);
-		broker.addConnector("tcp://localhost:61616");
+		broker.addConnector("tcp://localhost:61617");
 		broker.start();
 
 	}

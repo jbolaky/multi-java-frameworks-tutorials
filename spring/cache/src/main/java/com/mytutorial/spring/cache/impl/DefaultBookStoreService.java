@@ -22,7 +22,6 @@ public class DefaultBookStoreService implements BookStoreService {
 	public Book persist(Book book) {
 
 		book = bookStoreService.persist(book);
-		bookStoreService.flush();
 		return book;
 	}
 
@@ -34,7 +33,6 @@ public class DefaultBookStoreService implements BookStoreService {
 	public Book merge(Book book) {
 
 		book = bookStoreService.merge(book);
-		bookStoreService.flush();
 		return book;
 	}
 

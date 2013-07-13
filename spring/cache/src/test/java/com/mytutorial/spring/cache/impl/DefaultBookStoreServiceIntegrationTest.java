@@ -29,7 +29,7 @@ import com.mytutorials.domain.bookstore.entity.mapping.impl.DefaultBook;
 		"classpath:/default-spring-cache-context.xml",
 		"classpath:/default-spring-cache-datasource-context.xml" })
 @Transactional
-@TransactionConfiguration(transactionManager = "txManager", defaultRollback = false)
+@TransactionConfiguration(transactionManager = "txManager")
 public class DefaultBookStoreServiceIntegrationTest {
 
 	@Autowired
@@ -144,33 +144,24 @@ public class DefaultBookStoreServiceIntegrationTest {
 	@SuppressWarnings("unused")
 	public void testCaching() {
 
+		LocalDate from = new LocalDate().minusDays(1);
+		LocalDate to = new LocalDate().plusDays(1);
+
 		LocalTime before = new LocalTime();
 		LocalTime after = new LocalTime();
-		int timeTakenWithoutCacheableInMilliSeconds = 0;
-		int timeTakenWithCacheableInMilliSeconds = 0;
+		int timeTakenBeforeCachedInMilliSeconds = 0;
+		int timeTakenWithCacheInMilliSeconds = 0;
 
 		Date date = new Date();
-		LocalDate localDate = LocalDate.fromDateFields(date);
 
-		Book defaultBook = createBook(new DefaultBook());
-		Book defaultBook2 = createBook(new DefaultBook());
-		Book defaultBook3 = createBook(new DefaultBook());
-		Book defaultBook4 = createBook(new DefaultBook());
-		Book defaultBook5 = createBook(new DefaultBook());
-
-		Book book = bookStoreService.persist(defaultBook);
-		Book book2 = bookStoreService.persist(defaultBook2);
-		Book book3 = bookStoreService.persist(defaultBook3);
-		Book book4 = bookStoreService.persist(defaultBook4);
-		Book book5 = bookStoreService.persist(defaultBook5);
+		testPersist();
 
 		before = new LocalTime();
 		// Sql queries should be executed
 		List<Book> books = bookStoreService
-				.findByCreationDateTimeWithCacheable(localDate.minusDays(1),
-						localDate);
+				.findByCreationDateTimeWithCacheable(from, to);
 		after = new LocalTime();
-		timeTakenWithoutCacheableInMilliSeconds = after.getMillisOfDay()
+		timeTakenBeforeCachedInMilliSeconds = after.getMillisOfDay()
 				- before.getMillisOfDay();
 		assertNotNull(books);
 		assertTrue(books.size() > 0);
@@ -178,20 +169,19 @@ public class DefaultBookStoreServiceIntegrationTest {
 		before = new LocalTime();
 		// Sql queries should not be executed
 		List<Book> books2 = bookStoreService
-				.findByCreationDateTimeWithCacheable(localDate.minusDays(1),
-						localDate);
+				.findByCreationDateTimeWithCacheable(from, to);
 		after = new LocalTime();
-		timeTakenWithCacheableInMilliSeconds = after.getMillisOfDay()
+		timeTakenWithCacheInMilliSeconds = after.getMillisOfDay()
 				- before.getMillisOfDay();
 		assertNotNull(books2);
 		assertTrue(books2.size() > 0);
 
-		System.out.println("timeTakenWithoutCacheableInMilliSeconds is "
-				+ timeTakenWithoutCacheableInMilliSeconds);
-		System.out.println("timeTakenWithCacheableInMilliSeconds is :"
-				+ timeTakenWithCacheableInMilliSeconds);
+		System.out.println("timeTakenBeforeCachedInMilliSeconds is "
+				+ timeTakenBeforeCachedInMilliSeconds);
+		System.out.println("timeTakenWithCacheInMilliSeconds is :"
+				+ timeTakenWithCacheInMilliSeconds);
 
-		assertTrue(timeTakenWithCacheableInMilliSeconds < timeTakenWithoutCacheableInMilliSeconds);
+		assertTrue(timeTakenWithCacheInMilliSeconds < timeTakenBeforeCachedInMilliSeconds);
 	}
 
 	private Book createBook(DefaultBook defaultBook) {

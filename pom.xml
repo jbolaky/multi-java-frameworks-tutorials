@@ -17,6 +17,7 @@
 		<module>dozer</module>
 		<module>httpclient</module>
 		<module>jms</module>
+		<module>jpa-hibernate</module> 
 	</modules>
 
 	<properties>

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertThat;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.mytutorials.jpa.hibernate.entity.mapping.api.Family;
@@ -16,6 +17,7 @@ import com.mytutorials.jpa.hibernate.entity.mapping.impl.DefaultJob;
 import com.mytutorials.jpa.hibernate.entity.mapping.impl.DefaultPerson;
 import com.mytutorials.jpa.hibernate.repository.api.PersonRepository;
 
+@Ignore
 public class DefaultPersonRepositoryIntegrationTest {
 
 	private PersonRepository personRepository = new DefaultPersonRepository();

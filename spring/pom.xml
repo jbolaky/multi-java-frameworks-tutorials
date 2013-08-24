@@ -28,6 +28,7 @@
 		<module>batch</module>
 		<module>jms</module>
 		<module>cache</module>
+		<module>security</module>
 	</modules>
 
 </project>

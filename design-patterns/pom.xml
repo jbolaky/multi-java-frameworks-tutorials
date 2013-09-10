@@ -16,8 +16,10 @@
 	<url>http://maven.apache.org</url>
 
 	<modules>
+
 		<module>behavioural-chain-of-responsibility</module>
 		<module>behavioural-command</module>
+
 	</modules>
 
 </project>

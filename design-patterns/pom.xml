@@ -20,11 +20,7 @@
 		<module>behavioural-chain-of-responsibility</module>
 		<module>behavioural-command</module>
 		<module>behavioural-interpreter</module>
-<<<<<<< HEAD
 		<module>behavioural-mediator</module>
-=======
->>>>>>> branch 'master' of https://github.com/jbolaky/multi-java-frameworks-tutorials.git
-		
 	</modules>
 
 </project>

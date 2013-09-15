@@ -22,6 +22,7 @@
 		<module>behavioural-interpreter</module>
 		<module>behavioural-mediator</module>
 		<module>behavioural-iterator</module>
+		<module>behavioural-momento</module>
 		
 	</modules>
 

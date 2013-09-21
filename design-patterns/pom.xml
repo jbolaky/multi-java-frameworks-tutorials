@@ -24,6 +24,7 @@
 		<module>behavioural-iterator</module>
 		<module>behavioural-momento</module>
 		<module>behavioural-observer</module>	
+		<module>behavioural-strategy</module>
 		
 	</modules>
 

@@ -28,6 +28,7 @@
 		<module>object-behavioural-state</module>
 		<module>class-behavioural-template-method</module>
 		<module>object-behavioural-visitor</module>
+		<module>object-structural-bridge</module>
 		
 	</modules>
 

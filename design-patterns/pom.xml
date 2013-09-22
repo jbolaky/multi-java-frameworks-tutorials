@@ -25,6 +25,7 @@
 		<module>behavioural-momento</module>
 		<module>behavioural-observer</module>	
 		<module>behavioural-strategy</module>
+		<module>behavioural-state</module>
 		
 	</modules>
 

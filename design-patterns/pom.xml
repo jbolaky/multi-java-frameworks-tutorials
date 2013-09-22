@@ -27,6 +27,7 @@
 		<module>object-behavioural-strategy</module>
 		<module>object-behavioural-state</module>
 		<module>class-behavioural-template-method</module>
+		<module>class-behavioural-visitor</module>
 		
 	</modules>
 

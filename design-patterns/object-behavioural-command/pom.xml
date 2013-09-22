@@ -9,10 +9,10 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<groupId>com.mytutorials.design_patterns</groupId>
-	<artifactId>design_patterns.behavioural_iterator</artifactId>
+	<artifactId>design_patterns.object_behavioural_command</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>design_patterns.behavioural_iterator</name>
+	<name>design_patterns.object_behavioural_command</name>
 	<url>http://maven.apache.org</url>
 
 </project>

@@ -9,9 +9,9 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<groupId>com.mytutorials.design_patterns</groupId>
-	<artifactId>design_patterns.behavioural_observer</artifactId>
+	<artifactId>design_patterns.object_behavioural_strategy</artifactId>
 	<packaging>jar</packaging>
-	<name>design_patterns.behavioural_observer</name>
+	<name>design_patterns.object_behavioural_strategy</name>
 	<url>http://maven.apache.org</url>
 
 </project>

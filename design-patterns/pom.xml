@@ -17,15 +17,15 @@
 
 	<modules>
 
-		<module>behavioural-chain-of-responsibility</module>
-		<module>behavioural-command</module>
-		<module>behavioural-interpreter</module>
-		<module>behavioural-mediator</module>
-		<module>behavioural-iterator</module>
-		<module>behavioural-momento</module>
-		<module>behavioural-observer</module>	
-		<module>behavioural-strategy</module>
-		<module>behavioural-state</module>
+		<module>object-behavioural-chain-of-responsibility</module>
+		<module>object-behavioural-command</module>
+		<module>object-behavioural-interpreter</module>
+		<module>object-behavioural-mediator</module>
+		<module>object-behavioural-iterator</module>
+		<module>object-behavioural-momento</module>
+		<module>object-behavioural-observer</module>	
+		<module>object-behavioural-strategy</module>
+		<module>object-behavioural-state</module>
 		
 	</modules>
 

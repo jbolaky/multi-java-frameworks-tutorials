@@ -29,6 +29,7 @@
 		<module>class-behavioural-template-method</module>
 		<module>object-behavioural-visitor</module>
 		<module>object-structural-bridge</module>
+		<module>class-behavioural-object-structural-adapter</module>
 		
 	</modules>
 

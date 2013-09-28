@@ -33,6 +33,7 @@
 		<module>object-structural-decorator</module>
 		<module>class-behavioural-object-structural-adapter</module>
 		<module>object-structural-flyweight</module>
+		<module>object-structural-facade</module>
 		
 	</modules>
 

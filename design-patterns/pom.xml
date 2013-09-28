@@ -30,6 +30,7 @@
 		<module>object-behavioural-visitor</module>
 		<module>object-structural-bridge</module>
 		<module>object-structural-composite</module>
+		<module>object-structural-decorator</module>
 		<module>class-behavioural-object-structural-adapter</module>
 		
 	</modules>

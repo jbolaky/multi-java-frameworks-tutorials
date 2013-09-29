@@ -35,6 +35,7 @@
 		<module>object-structural-flyweight</module>
 		<module>object-structural-facade</module>
 		<module>object-structural-proxy</module>
+		<module>object-creational-abstract-factory</module>
 		
 	</modules>
 

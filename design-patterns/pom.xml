@@ -36,6 +36,7 @@
 		<module>object-structural-facade</module>
 		<module>object-structural-proxy</module>
 		<module>object-creational-abstract-factory</module>
+		<module>object-creational-builder</module>
 		
 	</modules>
 

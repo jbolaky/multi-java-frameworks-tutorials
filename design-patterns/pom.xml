@@ -38,6 +38,7 @@
 		<module>object-creational-abstract-factory</module>
 		<module>object-creational-builder</module>
 		<module>object-creational-prototype</module>
+		<module>object-creational-singleton</module>
 		
 	</modules>
 

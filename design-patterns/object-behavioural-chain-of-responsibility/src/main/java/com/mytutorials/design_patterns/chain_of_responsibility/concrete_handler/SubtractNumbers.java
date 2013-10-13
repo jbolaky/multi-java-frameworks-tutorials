@@ -5,7 +5,6 @@ import com.mytutorials.design_patterns.chain_of_responsibility.handler.Chain;
 
 public class SubtractNumbers implements Chain {
 
-	@SuppressWarnings("unused")
 	private Chain nextInChain;
 
 	// Defines the next Object to receive the
@@ -20,7 +19,7 @@ public class SubtractNumbers implements Chain {
 					+ request.getNumber2() + " = "
 					+ (request.getNumber1() / request.getNumber2()));
 		} else {
-			System.out.print("Only works for add, sub, mult, and div");
+			nextInChain.calculate(request);
 		}
 	}
 }

@@ -27,12 +27,13 @@ public class TestCalcChain {
 		chainCalc1.setNextChain(chainCalc2);
 		chainCalc2.setNextChain(chainCalc3);
 		chainCalc3.setNextChain(chainCalc4);
+		chainCalc4.setNextChain(chainCalc1);
 
 		// Define the data in the Numbers Object
 		// and send it to the first Object in the chain
 
 		Numbers request = new Numbers(4, 2, "add");
 
-		chainCalc1.calculate(request);
+		chainCalc2.calculate(request);
 	}
 }

@@ -33,6 +33,12 @@
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 
+		<!-- For Postgres DB Connection -->
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
+
 	</dependencies>
 
 </project>

@@ -64,6 +64,7 @@
 		<geronimo-ejb_3.0_spec.version>1.0.1</geronimo-ejb_3.0_spec.version>
 		<maven-ear-plugin.version>2.5</maven-ear-plugin.version>
 		<mysql.version>5.1.9</mysql.version>
+		<postgresql.version>9.1-901.jdbc4</postgresql.version>
 		<apache.tiles.version>2.1.3</apache.tiles.version>
 		<activemq-all.version>5.7.0</activemq-all.version>
 		<joda.time.hibernate.version>1.3</joda.time.hibernate.version>
@@ -508,6 +509,11 @@
 				<artifactId>mysql-connector-java</artifactId>
 				<scope>test</scope>
 				<version>${mysql.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>${postgresql.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.batch</groupId>

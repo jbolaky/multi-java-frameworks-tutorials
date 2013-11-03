@@ -1,3 +1,9 @@
 Manifest-Version: 1.0
-Class-Path: 
+Class-Path: spring-aop-3.2.3.RELEASE.jar aopalliance-1.0.jar spring-be
+ ans-3.2.3.RELEASE.jar spring-core-3.2.3.RELEASE.jar commons-logging-1
+ .1.1.jar spring-context-support-3.2.3.RELEASE.jar spring-context-3.2.
+ 3.RELEASE.jar spring-expression-3.2.3.RELEASE.jar jstl-1.2.jar spring
+ -webmvc-3.2.3.RELEASE.jar spring-web-3.2.3.RELEASE.jar slf4j-api-1.7.
+ 2.jar jcl-over-slf4j-1.7.2.jar slf4j-log4j12-1.7.2.jar log4j-1.2.14.j
+ ar
 

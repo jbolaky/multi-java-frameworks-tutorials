@@ -71,6 +71,8 @@
 		<maven.source.plugin.version>2.2.1</maven.source.plugin.version>
 		<ehcache.version>2.7.2</ehcache.version>
 		<p6spy.version>1.3</p6spy.version>
+		<maven-eclipse-plugin.version>2.9</maven-eclipse-plugin.version>
+		<maven-war-plugin.version>2.3</maven-war-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -579,6 +581,23 @@
 		</pluginManagement>
 
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>${maven-eclipse-plugin.version}</version>
+				<configuration>
+				  <projectNameTemplate>[artifactId]-[version]</projectNameTemplate>
+				  <wtpmanifest>true</wtpmanifest>
+				  <wtpapplicationxml>true</wtpapplicationxml>
+				  <wtpversion>2.0</wtpversion>
+				  <manifest>${basedir}/src/main/resources/META-INF/MANIFEST.MF</manifest>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${maven-war-plugin.version}</version>
+			</plugin>
 			<!-- JAVA PROJECT COMPILER -->
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

@@ -17,6 +17,7 @@
 
 	<modules>
 		<module>webapp</module>
+		<module>ldap</module>
 	</modules>
 
 </project>

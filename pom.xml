@@ -40,7 +40,7 @@
 		<jstl.version>1.2</jstl.version>
 		<ognl.version>2.6.9</ognl.version>
 		<spring-agent.version>2.5.6</spring-agent.version>
-		<aspectj.version>1.6.9</aspectj.version>
+		<aspectj.version>1.8.5</aspectj.version>
 		<cglib.version>2.2</cglib.version>
 		<hessian.version>4.0.7</hessian.version>
 		<oval.version>1.70</oval.version>

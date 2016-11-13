@@ -10,7 +10,7 @@
 	<url>http://maven.apache.org</url>
 
 	<modules>
-		<module>spring</module>
+		<!--module>spring</module>
 		<module>ejb3</module>
 		<module>oval</module>
 		<module>domain</module>
@@ -18,7 +18,8 @@
 		<module>httpclient</module>
 		<module>jms</module>
 		<module>jpa-hibernate</module>
-		<module>design-patterns</module>
+		<module>design-patterns</module-->
+		<module>javacache</module>
 	</modules>
 
 	<properties>
@@ -74,6 +75,8 @@
 		<maven-eclipse-plugin.version>2.9</maven-eclipse-plugin.version>
 		<maven-war-plugin.version>2.3</maven-war-plugin.version>
 		<apacheds-server-jndi.version>1.5.5</apacheds-server-jndi.version>
+		<logback-classic.version>1.0.13</logback-classic.version>
+		<ehcache.version>2.9.0</ehcache.version>
 	</properties>
 
 	<dependencies>
@@ -479,6 +482,18 @@
 				<groupId>org.apache.tiles</groupId>
 				<artifactId>tiles-jsp</artifactId>
 				<version>${apache.tiles.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback-classic.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>net.sf.ehcache</groupId>
+				<artifactId>ehcache</artifactId>
+				<version>${ehcache.version}</version>
 			</dependency>
 
 			<!-- Test Dependency -->
